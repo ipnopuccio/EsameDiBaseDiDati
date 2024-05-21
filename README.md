@@ -191,6 +191,10 @@ La base di dati è già in terza forma normale, ogni attributo dipende solo dall
 
 ## Trigger e Stored Procedures per la Gestione dei Biglietti e dei Dati dei Passeggeri
 
+### Stored Procedures
+
+Visualizzare la cartella SP
+
 ### Trigger
 
 #### Trigger per Controllare la Vendita di Biglietti
