@@ -45,4 +45,4 @@ Si è deciso di non collegare missione e compagnia poiché si assume che la miss
 
 Poiché i viaggi spaziali includono molti cambi di fuso orario tutti gli orari dei turni sono espressi in GMT (UTC +0). Il biglietto è facilmente rappresentabile in codice alphanumerico e jpeg, con l'utilizzo dell'assicurazione per rimborsare automaticamente i passeggeri in caso di ritardo del razzo superiore ai 15 minuti. Tale tecnologia sarebbe ideale per il DB e potrebbe essere integrata con minime modifiche ai campi assicurazione e biglietto.
 
-![Diagramma E/R](percorso/DiagrammaE_R.png)
+![Diagramma E/R](DiagrammaE_R.png)
