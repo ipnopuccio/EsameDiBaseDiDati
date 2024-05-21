@@ -115,6 +115,78 @@ La base di dati è già in seconda forma normale, ciascuna colonna dipende dalla
 
 La base di dati è già in terza forma normale, ogni attributo dipende solo dalla primary key.
 
-## Trigger
+## Esempi di Tabelle
+
+### Compagnia
+
+| idAgenzia   | nazionalità | telefono   | descrizione                | email                     |
+|-------------|-------------|------------|----------------------------|---------------------------|
+| SpaceX      | USA         | 123456789  | Space Exploration Technologies | info@spacex.com      |
+| Blue Origin | USA         | 987654321  | Blue Origin                 | info@blueorigin.com      |
+| Roscosmos   | Russia      | 1122334455 | Roscosmos                   | contact@roscosmos.ru     |
+
+### Razzo
+
+| idRazzo    | sigla       | posti | descrizione           | produttore  | idAgenzia   |
+|------------|-------------|-------|-----------------------|-------------|-------------|
+| Falcon9    | Falcon 9    | 10    | Falcon 9 Full Thrust  | SpaceX      | SpaceX      |
+| NewShepard | New Shepard | 6     | New Shepard           | Blue Origin | Blue Origin |
+| Starship   | Starship    | 100   | Starship Prototype    | SpaceX      | SpaceX      |
+
+### Base di Lancio
+
+| idBaseLancio | nazione | coordinate         | regione          |
+|--------------|---------|--------------------|------------------|
+| KSC          | USA     | 28.5721, -80.648   | Florida          |
+| CSG          | Francia | 5.236, -52.768     | Guyana Francese  |
+| Baikonur     | Kazakhstan | 45.920278, 63.342222 | Baikonur      |
+
+### Passeggero
+
+| idPasseggero | nome      | cognome | email                | nazionalità | password | sesso | passaporto | dataNascita | telefono    |
+|--------------|-----------|---------|----------------------|-------------|----------|-------|------------|-------------|-------------|
+| JohnDoe      | John      | Doe     | john.doe@example.com | USA         | pass123  | 0     |        0x    |       xx/xx/xx      |        +1     |
+| JaneSmith    | Jane      | Smith   | jane.smith@example.com | UK         | pass123  | 1     |      0x      |    xx/xx/xx         |      +49       |
+| SergeyBrin   | Sergey    | Brin    | sergey.brin@example.com | Russia     | pass123  | 0     |        0x    |     xx/xx/xx        |       +421      |
+
+### Missione
+
+| idMissione | idBaseLancioPartenza | idBaseLancioArrivo | idRazzo    | ritardo |
+|------------|----------------------|--------------------|-----------|---------|
+| M001       | KSC                  | CSG                | Falcon 9  | 0       |
+| M002       | CSG                  | Baikonur           | New Shepard | 15      |
+| M003       | Baikonur             | KSC                | Starship  | 0       |
+
+### Biglietto
+
+| idBiglietto | check_in | prezzo | classe | assicurazione | idAgenzia | idMissione | idPasseggero | dataAcquisto | posto |
+|-------------|----------|--------|--------|---------------|-----------|------------|--------------|--------------|-------|
+| B001        | 1        | 500000 | 1      | 1             | SpaceX    | M001       | JohnDoe      | 2024-01-15   | 12A   |
+| B002        | 0        | 250000 | 2      | 0             | Blue Origin | M002     | JaneSmith    | 2024-01-16   | 14B   |
+| B003        | 1        | 150000 | 3      | 1             | SpaceX    | M003       | SergeyBrin   | 2024-01-17   | 16C   |
+
+### Ruolo
+
+| idRuolo | Nome | Descrizione | Ral    | idReferente |
+|------------|----------------------|--------------------|-----------|---------|
+| R1       | Astronauta                  | 75000                | ID123  |
+| R2       | Ingegnere                  | 65000           |  ID124 |
+| R3       | Scienziato             | 70000                | ID125  |
+
+### Personale
+
+| idPersonale | idAgenzia   | ruolo      | ral    | dataNascita | sesso | nome    | cognome | password |
+|--------------|-------------|------------|--------|-------------|-------|---------|---------|----------|
+| ElonMusk     | SpaceX      | Pilota     | 100000 | 1980-05-15  | 0     | Elon    | Musk    | elonpass |
+| JeffBezos    | Blue Origin | Ingegnere  | 90000  | 1985-06-12  | 0     | Jeff    | Bezos   | jeffpass |
+| DmitryRogozin | Roscosmos  | Scienziato | 95000  | 1970-02-15  | 0     | Dmitry  | Rogozin | dmitrypass |
+
+### Turno 
+
+| idEquipaggio | idRazzo   | InizioTurno   | FineTurno    |
+|--------------|-------------|------------|--------|
+| ElonMusk     | Falcon 9      | 2024-01-01 08:00:00     | 2024-01-03 10:00:00|
+| JeffBezos    | Blue Origin | 2024-01-02 09:00:00  |2024-01-02 19:00:00|
+| DmitryRogozin | Roscosmos  | 2024-01-03 10:00:00 |2024-01-03 20:00:00|
 
 
