@@ -46,7 +46,7 @@ Poiché i viaggi spaziali includono molti cambi di fuso orario tutti gli orari d
 
 ## Diagramma E/R
 
-![Diagramma E/R](DiagrammaE_R.png)
+![Diagramma E/R](DiagrammaE_R.png) 
 
 ## Scelta delle chiavi primarie
 
@@ -101,6 +101,8 @@ Sono presenti diverse ridondanze, esse sono state analizzate e strutturate in mo
 
 ## Struttura del Database
 
+(https://github.com/ipnopuccio/EsameDiBaseDiDati/blob/main/StrutturaDataBase.sql)
+
 ## Schema Logico 
 
 ![Schema Logico](SchemaLogico.png)
@@ -108,7 +110,9 @@ Sono presenti diverse ridondanze, esse sono state analizzate e strutturate in mo
 ## Normalizzazione 
 
 La base di dati è già in prima forma normale, tutte le colonne sono atomiche.
+
 La base di dati è già in seconda forma normale, ciascuna colonna dipende dalla primary key.
+
 La base di dati è già in terza forma normale, ogni attributo dipende solo dalla primary key.
 
 ## Trigger
