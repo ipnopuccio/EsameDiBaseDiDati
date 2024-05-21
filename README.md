@@ -193,7 +193,65 @@ La base di dati è già in terza forma normale, ogni attributo dipende solo dall
 
 ### Stored Procedures
 
-Visualizzare la cartella SP
+#### Procedura per Mostrare i Dati di Tutti i Passeggeri Ordinati per Cognome
+
+DELIMITER $$  
+CREATE PROCEDURE datiPasseggeri()  
+BEGIN  
+    SELECT * FROM passeggero p ORDER BY p.cognome;  
+END$$  
+DELIMITER ;
+
+CALL datiPasseggeri();
+
+#### Procedura per Stampare i Turni dei Prossimi 7 Giorni di un Determinato Impiegato
+
+DELIMITER $$  
+CREATE PROCEDURE turniPersonale(IN codiceFiscale VARCHAR(16))  
+BEGIN  
+    SELECT t.idPersonale, p.nome, p.cognome, t.inizioTurno, t.fineTurno
+    FROM turno t
+    INNER JOIN personale p ON t.idPersonale = p.idPersonale
+    WHERE t.inizioTurno BETWEEN CURDATE() AND CURDATE() + INTERVAL 7 DAY
+    AND p.idPersonale = codiceFiscale
+    ORDER BY p.cognome;  
+END$$  
+DELIMITER ;
+
+SET @codiceFiscale = 'DSLNND99C25F356R';
+CALL turniPersonale(@codiceFiscale);
+
+#### Procedura che torna i dati di tutte le aziende con almeno 50 SpaceX Falcon 9 razzi in servizio:
+
+DELIMITER $$  
+CREATE PROCEDURE datiAziende()  
+BEGIN  
+    SELECT c.idCompagnia, COUNT(*) AS numeroRazzi
+    FROM razzo r
+    INNER JOIN compagnia c ON r.idCompagnia = c.idCompagnia
+    WHERE r.sigla LIKE '%Falcon 9%'
+    GROUP BY c.idCompagnia
+    HAVING numeroRazzi >= 50;
+END$$  
+DELIMITER ;
+
+CALL datiAziende();
+
+#### Procedare che torna i dati di tutti i passeggeri che hanno acquistato almeno 10 biglietti Virgin Galactic:
+
+DELIMITER $$  
+CREATE PROCEDURE topClients()  
+BEGIN  
+    SELECT p.nome, p.cognome, p.email, COUNT(*) AS numeroBigliettiAcquistati
+    FROM passeggero p
+    INNER JOIN biglietto b ON p.idPasseggero = b.idPasseggero
+    WHERE b.idCompagnia = 'Virgin Galactic'
+    GROUP BY p.idPasseggero
+    HAVING numeroBigliettiAcquistati >= 10;
+END$$  
+DELIMITER ;
+
+CALL topClients();
 
 ### Trigger
 
