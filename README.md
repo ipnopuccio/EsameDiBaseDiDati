@@ -167,8 +167,8 @@ La base di dati è già in terza forma normale, ogni attributo dipende solo dall
 
 ### Ruolo
 
-| idRuolo | Nome | Descrizione | Ral    | idReferente |
-|------------|----------------------|--------------------|-----------|---------|
+| idRuolo | Descrizione | Ral    | idReferente |
+|------------|----------------------|--------------------|-----------|
 | R1       | Astronauta                  | 75000                | ID123  |
 | R2       | Ingegnere                  | 65000           |  ID124 |
 | R3       | Scienziato             | 70000                | ID125  |
