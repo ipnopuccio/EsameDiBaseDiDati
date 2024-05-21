@@ -189,4 +189,35 @@ La base di dati è già in terza forma normale, ogni attributo dipende solo dall
 | JeffBezos    | Blue Origin | 2024-01-02 09:00:00  |2024-01-02 19:00:00|
 | DmitryRogozin | Roscosmos  | 2024-01-03 10:00:00 |2024-01-03 20:00:00|
 
+## Trigger e Stored Procedures per la Gestione dei Biglietti e dei Dati dei Passeggeri
+
+### Trigger
+
+#### Trigger per Controllare la Vendita di Biglietti
+
+Questo trigger controlla che non vengano venduti più biglietti del numero di posti disponibili su un razzo. Se si tenta di vendere un biglietto quando i posti sono esauriti, viene generato un errore.
+
+```sql
+DELIMITER $$  
+CREATE TRIGGER trg_Biglietti BEFORE INSERT ON biglietto  
+FOR EACH ROW  
+BEGIN  
+    DECLARE bigliettiVenduti INT;
+    SELECT COUNT(*) INTO bigliettiVenduti 
+    FROM biglietto b
+    WHERE b.idMissione = NEW.idMissione;
+
+    DECLARE postiDisponibili INT;
+    SELECT r.posti INTO postiDisponibili 
+    FROM missione m
+    INNER JOIN razzo r ON m.idRazzo = r.idRazzo
+    WHERE m.idMissione = NEW.idMissione;
+
+    IF bigliettiVenduti >= postiDisponibili THEN  
+        SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = 'Razzo Pieno!';
+    END IF;  
+END$$
+DELIMITER ;
+
+
 
